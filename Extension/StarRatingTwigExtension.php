@@ -6,7 +6,13 @@ class StarRatingTwigExtension extends \Twig_Extension
 {
     public function getFilters() {
         $filters = array(
-            'star_rating' => new \Twig_Filter_Method($this, 'starRatingFilter', array('is_safe'=>array('html'))),
+            new \Twig_SimpleFilter(
+                'star_rating',
+                array($this, 'starRatingFilter'),
+                array(
+                    'is_safe' => array('html')
+                )
+            )
         );
         return $filters;
     }
